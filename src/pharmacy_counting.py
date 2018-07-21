@@ -1,4 +1,7 @@
-# this files contains all the functionality to read a file do a groupby and sorting and creating an output file
+# this files contains all the functionality to read a file into a list of lists
+# then it does a groupby operation and sorts and creates the output
+# This might not work fast enough when the input file is large as it runs all
+# the mentioned operations in series (no lazy evaluation)
 import os
 import sys
 import itertools
@@ -22,10 +25,6 @@ def read_input_to_list(input_file, sep=',', required_cols=None):
             if input_header != ['']:
                 col_index = get_column_index(input_header, required_cols)
                 break
-        # This if statement checks the columns names of the input file
-        if input_header != required_cols:
-            print('{} don\'t match following default:'.format(input_header), required_cols)
-            sys.exit(0)
 
         for line in input_file:
             # this if statement skips the empty lines in the input file
