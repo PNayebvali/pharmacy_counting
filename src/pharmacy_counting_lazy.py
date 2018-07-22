@@ -1,6 +1,6 @@
 import sys
 from operator import itemgetter, add
-from collections import namedtuple
+from collections import namedtuple, Counter
 from AuxFunctions import *
 
 
@@ -40,6 +40,13 @@ def group_by_aggregator(input_file, sep=',', group_by_key=('drug_name',),
         raise ValueError('There should be at least 1 column for unique count aggregation if ignore_unique is False')
 
     ref_cols = [x.lower() for x in group_by_key + group_by_unique_col + group_by_sum_col]
+    count_dict = Counter(ref_cols)
+    for k, v in count_dict.items():
+        if v != 1:
+            print(
+                'There should be no duplicates between key,unique count and sum columns for group by operation.\n'
+                '{} is duplicate'.format(k))
+            quit()
     output_header = ['key_' + str(group_by_key)] + [
         'group_count' if ignore_unique else 'num_unique_' + str(group_by_unique_col)] + ['Total_' + str(x) for x in
                                                                                          group_by_sum_col]
@@ -77,7 +84,7 @@ def group_by_aggregator(input_file, sep=',', group_by_key=('drug_name',),
 #     # reading the command line arguments
 #     input_file = '../input/itcont.txt'
 #     output_file = '../output/peyman_check.txt'
-#     header, body = group_by_aggregator(input_file)
+#     header, body = group_by_aggregator(input_file, group_by_key=('prescriber_last_name',))
 #     body_sorted = multiple_sort(body, (2, 0), (0, 1))
 #     write_output_to_txt(body_sorted, output_file)
 #     test = 'Pey'
