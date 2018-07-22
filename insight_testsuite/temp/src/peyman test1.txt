@@ -1,0 +1,4 @@
+drug_name,num_prescriber,total_cost
+ambien,3,800.0
+benztropine mesylate,1,1500.0
+chlorpromazine,2,3000.0

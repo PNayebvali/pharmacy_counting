@@ -1,29 +1,35 @@
 # Table of Contents
-1. [Problem](README.md#problem)
-2. [Input Dataset](README.md#input-dataset)
+1. [Methodology](README.md#Methodology)
+2. [Tests](README.md#Tests)
 3. [Instructions](README.md#instructions)
 4. [Output](README.md#output)
 5. [Tips on getting an interview](README.md#tips-on-getting-an-interview)
 6. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
-7. [Questions?](README.md#questions?)
 
-# Problem
 
-Imagine you are a data engineer working for an online pharmacy. You are asked to generate a list of all drugs, the total number of UNIQUE individuals who prescribed the medication, and the total drug cost, which must be listed in descending order based on the total drug cost and if there is a tie, drug name. 
+# Methodology
 
-Disclosure: The projects that Insight Data Engineering Fellows work on during the program are much more complicated and interesting than this coding challenge. This challenge only tests you on the basics. 
+I have used Python to solve this challenge. The problem asks for a simple group by operation but with native data structures. We can use itertools groupby Methodology that comes standard with python. In this case we need to run the groupby operation on text file fully in memory. Instead I decided to calculate with my own algorithm while reading each line.
+I read lines from the file and check to see if that datapoint has unique prescriber and new drug_name. Based on the result I update the output dictionary and unique_id.
 
-# Input Dataset
+# Tests
 
-The original dataset was obtained from the Centers for Medicare & Medicaid Services but has been cleaned and simplified to match the scope of the coding challenge. It provides information on prescription drugs prescribed by individual physicians and other health care providers. The dataset identifies prescribers by their ID, last name, and first name.  It also describes the specific prescriptions that were dispensed at their direction, listed by drug name and the cost of the medication. 
+There are 6 tests to check the code under different scenarios (including the base case of insight). Each test does the following:
 
+* test_1: Base test by insight
+* test_2: Data case sensitivity check:  All the float columns are case insensitive
+* test_3: Sort check: Tests the sorts and their directions according to the specification
+* test_4: Header case sensitivity check and Extra columns: The code is case insensitive in headers and can handle extra columns at the end
+* test_5: Multiple extra columns and columns reorder: The code is capable of reading in the a file that has it is column order changed from default. As long as all the columns required for groupby are available, the groupby process should go smoothly
+* test_6: Blank lines: All the blank lines at the beginning, in the middle or at the end of the file will be skipped
+ 
 # Instructions
 
-We designed this coding challenge to assess your coding skills and your understanding of computer science fundamentals. They are both prerequisites of becoming a data engineer. To solve this challenge you might pick a programing language of your choice (preferably Python, Scala, Java, or C/C++ because they are commonly used and will help us better assess you), but you are only allowed to use the default data structures that come with that programming language (you might use I/O libraries). For example, you can code in Python, but you should not use Pandas or any other external libraries. 
+We designed this coding challenge to assess your coding skills and your understanding of computer science fundamentals. They are both prerequisites of becoming a data engineer. To solve this challenge you might pick a programing language of your choice (preferably Python, Scala, Java, or C/C++ because they are commonly used and will help us better assess you), but you are only allowed to use the default data structures that come with that programming language (you might use I/O libraries). For example, you can code in Python, but you should not use Pandas or any other external libraries.
 
-***The objective here is to see if you can implement the solution using basic data structure building blocks and software engineering best practices (by writing clean, modular, and well-tested code).*** 
+***The objective here is to see if you can implement the solution using basic data structure building blocks and software engineering best practices (by writing clean, modular, and well-tested code).***
 
-# Output 
+# Output
 
 Your program needs to create the output file, `top_cost_drug.txt`, that contains comma (`,`) separated fields in each line.
 
@@ -77,7 +83,7 @@ If your solution requires additional libraries, environments, or dependencies, y
 
 The directory structure for your repo should look like this:
 
-    ├── README.md 
+    ├── README.md
     ├── run.sh
     ├── src
     │   └── pharmacy-counting.py
@@ -109,7 +115,7 @@ The tests are stored simply as text files under the `insight_testsuite/tests` fo
 
 You can run the test with the following command from within the `insight_testsuite` folder:
 
-    insight_testsuite~$ ./run_tests.sh 
+    insight_testsuite~$ ./run_tests.sh
 
 On a failed test, the output of `run_tests.sh` should look like:
 
@@ -131,12 +137,9 @@ For a limited time we also are making available a <a href="http://ec2-18-210-131
 
 # Instructions to submit your solution
 * To submit your entry please use the link you received in your coding challenge invite email
-* You will only be able to submit through the link one time 
-* Do NOT attach a file - we will not admit solutions which are attached files 
+* You will only be able to submit through the link one time
+* Do NOT attach a file - we will not admit solutions which are attached files
 * Use the submission box to enter the link to your GitHub or Bitbucket repo ONLY
 * Link to the specific repo for this project, not your general profile
 * Put any comments in the README inside your project repo, not in the submission box
-* We are unable to accept coding challenges that are emailed to us 
-
-# Questions?
-Email us at cc@insightdataengineering.com
+* We are unable to accept coding challenges that are emailed to us

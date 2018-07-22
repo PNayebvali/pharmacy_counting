@@ -1,0 +1,7 @@
+dummy_column2,prescriber_last_name,Prescriber_First_Name,drug_name,drug_cost,dummy_column1,id
+1,Smith,James,AMBIEN,100,1,1000000001
+2,Garcia,Maria,AMBIEN,200,0,1000000002
+3,Johnson,James,CHLORPROMAZINE,1000,2,1000000003
+4,Rodriguez,Maria,CHLORPROMAZINE,1000,3,1000000004
+5,Smith,David,BENZTROPINE MESYLATE,1500,4,1000000005
+
