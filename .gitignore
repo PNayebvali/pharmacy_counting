@@ -2,3 +2,6 @@
 .idea
 PlayGround.py
 pharmacy_counting.py
+*.pyc
+pharmacy_counting-master.zip
+
